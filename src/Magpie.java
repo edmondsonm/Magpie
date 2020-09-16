@@ -43,7 +43,6 @@ public class Magpie
 		//no negative response
 		else if (findKeyword(statement, "no") != -1)
 		{
-            // ToDo: Make this less stupid
 			response = "Why so negative?";
 		}
 
@@ -101,19 +100,21 @@ public class Magpie
 
 		else
 		{
-			// Look for a two word (you <something> me)
-			// pattern
-
+			// Look for a two word (you <something> me) pattern
 			if (findKeyword(statement, "you", 0) >= 0
 					&& findKeyword(statement, "me", findKeyword(statement, "you", 0)) >= 0)
 			{
 				response = transformYouMeStatement(statement);
 			}
+			
+			//Look for a two word (i <something> you) pattern
 			else if (findKeyword(statement, "I", 0) >= 0
 			&& findKeyword(statement, "you", findKeyword(statement, "I", 0)) >= 0)
 				{
 					response = transformIYouStatement(statement);
 				}
+			
+			//Gets random response
 			else
 			{
 				response = getRandomResponse();
